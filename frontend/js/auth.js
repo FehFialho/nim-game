@@ -1,4 +1,4 @@
-// js/auth.js
+
 
 function salvarUsuario(usuario) {
     let users = JSON.parse(localStorage.getItem("usuarios")) || [];
