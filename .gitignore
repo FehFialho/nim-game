@@ -1,0 +1,59 @@
+# ========================================
+# .gitignore para projeto ASP.NET + Python
+# ========================================
+
+# --- ASP.NET / C# ---
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vspx
+*.vspscc
+*.vssscc
+*.cache
+*.dbmdl
+*.log
+*.pdb
+*.mdb
+
+# Diretório de build da IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Diretório de build do Visual Studio
+.vs/
+
+# --- Configurações locais ---
+appsettings.Development.json
+appsettings.Local.json
+
+# --- Logs e temporários ---
+*.log
+*.tmp
+
+# --- Python (pasta ai/) ---
+ai/__pycache__/
+ai/*.pyc
+ai/*.pyo
+ai/.pytest_cache/
+ai/.mypy_cache/
+ai/venv/
+ai/env/
+ai/.env
+
+# --- Arquivos de pacotes ---
+*.egg-info/
+*.eggs/
+*.lock
+
+# --- Arquivos do sistema ---
+.DS_Store
+Thumbs.db
+
+# --- Outras extensões ---
+*.swp
+*.bak
+*.orig
