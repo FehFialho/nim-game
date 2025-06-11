@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NimGame")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+553a5e76de746d66e0fa200644e25a05c1f42aa5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4312376f411a052e7a0095b34a287a3838c6a607")]
 [assembly: System.Reflection.AssemblyProductAttribute("NimGame")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NimGame")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
