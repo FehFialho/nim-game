@@ -2,21 +2,16 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Nim - Jogo</title>
+    <title>Nim - Contra IA</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="game.js" defer></script>
+    <script defer src="js/gameAI.js"></script>
 </head>
 <body>
-    <div class="game-container">
-        <h2 id="status">Sua vez!</h2>
-        <div class="timer">Tempo restante: <span id="timer">30</span>s</div>
-        <div id="columns">
-            <!-- Palitos serão gerados via JS dinamicamente -->
+    <div class="game-container game-page">
+        <h2>Sua vez!</h2>
+        <div class="stick-container" id="stick-container">
+            <!-- Palitos vão aparecer aqui -->
         </div>
-    </div>
-    <div id="game-result" class="hidden">
-        <h2 id="result-message"></h2>
-        <button onclick="window.location.href='menu.html'">Jogar Novamente</button>
     </div>
 </body>
 </html>

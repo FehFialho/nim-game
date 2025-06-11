@@ -1,4 +1,5 @@
-let columns = [5, 5, 5, 5, 5]; // Palitos por coluna
+// Jogo.js
+let columns = [5, 5, 5, 5, 5];
 let isPlayerTurn = true;
 let timer;
 let countdown = 30;
@@ -14,13 +15,13 @@ function renderColumns() {
     columns.forEach((count, colIndex) => {
         const col = document.createElement('div');
         col.classList.add('column');
+
         for (let i = 0; i < count; i++) {
             const stick = document.createElement('div');
             stick.classList.add('stick');
             stick.dataset.col = colIndex;
             stick.dataset.index = i;
 
-            // Marcar se está selecionado
             if (selected.column === colIndex && selected.indices.includes(i)) {
                 stick.classList.add('selected');
             }
@@ -46,9 +47,9 @@ function toggleStick(column, index) {
 
     const i = selected.indices.indexOf(index);
     if (i > -1) {
-        selected.indices.splice(i, 1); // desseleciona
+        selected.indices.splice(i, 1);
     } else {
-        selected.indices.push(index); // seleciona
+        selected.indices.push(index);
     }
 
     renderColumns();
@@ -69,6 +70,7 @@ function confirmRemove() {
 function checkGameEnd() {
     if (columns.reduce((a, b) => a + b) === 0) {
         document.getElementById('game-result').classList.remove('hidden');
+        document.getElementById('game-result').classList.add('show');
         document.getElementById('status').innerText = '';
         document.getElementById('result-message').innerText = isPlayerTurn ? 'Você perdeu!' : 'Você venceu!';
         clearInterval(timer);
@@ -84,15 +86,15 @@ function switchTurn() {
     resetTimer();
 
     if (!isPlayerTurn) {
-        setTimeout(aiPlay, 2000); // IA joga após 2s
+        setTimeout(aiPlay, 2000);
     }
 }
 
 function aiPlay() {
-    // Remove todos os palitos de uma das primeiras colunas não vazias
     for (let i = 0; i < columns.length; i++) {
         if (columns[i] > 0) {
-            columns[i] = 0;
+            const removeCount = Math.floor(Math.random() * columns[i]) + 1;
+            columns[i] -= removeCount;
             break;
         }
     }
@@ -110,8 +112,9 @@ function resetTimer() {
         document.getElementById('timer').innerText = countdown;
         if (countdown <= 0) {
             clearInterval(timer);
-            document.getElementById('result-message').innerText = isPlayerTurn ? 'Você perdeu por tempo!' : 'IA perdeu por tempo!';
             document.getElementById('game-result').classList.remove('hidden');
+            document.getElementById('game-result').classList.add('show');
+            document.getElementById('result-message').innerText = isPlayerTurn ? 'Você perdeu por tempo!' : 'IA perdeu por tempo!';
         }
     }, 1000);
 }
@@ -120,9 +123,51 @@ window.onload = () => {
     renderColumns();
     resetTimer();
 
-    // Botão de remoção
     const removeButton = document.createElement('button');
     removeButton.innerText = "Remover Palitos Selecionados";
     removeButton.onclick = confirmRemove;
     document.body.appendChild(removeButton);
 };
+
+// auth.js
+function salvarUsuario(usuario) {
+    let users = JSON.parse(localStorage.getItem("usuarios")) || [];
+    users.push(usuario);
+    localStorage.setItem("usuarios", JSON.stringify(users));
+}
+
+function buscarUsuario(username) {
+    let users = JSON.parse(localStorage.getItem("usuarios")) || [];
+    return users.find(u => u.username === username);
+}
+
+function registrar(event) {
+    event.preventDefault();
+    const username = document.getElementById("reg-username").value;
+    const email = document.getElementById("reg-email").value;
+    const senha = document.getElementById("reg-password").value;
+
+    if (buscarUsuario(username)) {
+        alert("Usuário já existe!");
+        return;
+    }
+
+    salvarUsuario({ username, email, senha });
+    alert("Cadastro realizado com sucesso!");
+    window.location.href = "index.html";
+}
+
+function logar(event) {
+    event.preventDefault();
+    const username = document.getElementById("login-username").value;
+    const senha = document.getElementById("login-password").value;
+
+    const usuario = buscarUsuario(username);
+    if (!usuario || usuario.senha !== senha) {
+        alert("Usuário ou senha incorretos.");
+        return;
+    }
+
+    localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+    window.location.href = "menu.html";
+}
