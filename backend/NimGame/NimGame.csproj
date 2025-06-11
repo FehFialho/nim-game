@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <!-- Pacote para ASP.NET Core MVC (Controllers e API) -->
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <!-- Entity Framework Core SQL Server -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />

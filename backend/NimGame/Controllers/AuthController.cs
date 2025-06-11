@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NimGame.Data;
 using NimGame.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace NimGame.Controllers
 {
@@ -25,7 +25,7 @@ namespace NimGame.Controllers
             var user = new User
             {
                 Username = request.Username,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password)
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password),
             };
 
             _context.Users.Add(user);
@@ -37,7 +37,9 @@ namespace NimGame.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == request.Username);
+            var user = await _context.Users.FirstOrDefaultAsync(u =>
+                u.Username == request.Username
+            );
             if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
                 return Unauthorized(new { message = "Credenciais inválidas." });
 
@@ -46,20 +48,14 @@ namespace NimGame.Controllers
 
         public class RegisterRequest
         {
-            public string Username { get; set; }
-            public string Password { get; set; }
+            public string Username { get; set; } = null!;
+            public string Password { get; set; } = null!;
         }
 
         public class LoginRequest
         {
-            public string Username { get; set; }
-            public string Password { get; set; }
-        }
-        public class User
-        {
-            public int Id { get; set; }
-            public string Username { get; set; }
-            public string PasswordHash { get; set; }
+            public string Username { get; set; } = null!;
+            public string Password { get; set; } = null!;
         }
     }
 }

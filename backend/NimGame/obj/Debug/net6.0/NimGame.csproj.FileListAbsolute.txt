@@ -84,3 +84,4 @@ C:\Users\disrct\Desktop\nim-game\backend\NimGame\obj\Debug\net6.0\refint\NimGame
 C:\Users\disrct\Desktop\nim-game\backend\NimGame\obj\Debug\net6.0\NimGame.pdb
 C:\Users\disrct\Desktop\nim-game\backend\NimGame\obj\Debug\net6.0\NimGame.genruntimeconfig.cache
 C:\Users\disrct\Desktop\nim-game\backend\NimGame\obj\Debug\net6.0\ref\NimGame.dll
+C:\Users\disrct\Desktop\nim-game\backend\NimGame\bin\Debug\net6.0\BCrypt.Net-Next.dll

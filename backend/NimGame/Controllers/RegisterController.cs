@@ -1,41 +1,45 @@
 using Microsoft.AspNetCore.Mvc;
-using NimGame.Models;
 using Microsoft.EntityFrameworkCore;
+using NimGame.Data;
+using NimGame.Models;
 
-[ApiController]
-[Route("api/[controller]")]
-public class RegisterController : ControllerBase
+namespace NimGame.Controllers
 {
-    private readonly UserDbContext _context;
-
-    public RegisterController(UserDbContext context)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class RegisterController : ControllerBase
     {
-        _context = context;
-    }
+        private readonly ApplicationDbContext _context;
 
-    [HttpPost]
-    public async Task<IActionResult> Register([FromBody] RegisterRequest request)
-    {
-        if (await _context.Users.AnyAsync(u => u.Username == request.Username))
+        public RegisterController(ApplicationDbContext context)
         {
-            return BadRequest(new { message = "Usuário já existe." });
+            _context = context;
         }
 
-        var user = new User
+        [HttpPost]
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
-            Username = request.Username,
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password)
-        };
+            if (await _context.Users.AnyAsync(u => u.Username == request.Username))
+            {
+                return BadRequest(new { message = "Usuário já existe." });
+            }
 
-        _context.Users.Add(user);
-        await _context.SaveChangesAsync();
+            var user = new User
+            {
+                Username = request.Username,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password),
+            };
 
-        return Ok(new { message = "Usuário registrado com sucesso." });
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Usuário registrado com sucesso." });
+        }
     }
-}
 
-public class RegisterRequest
-{
-    public string Username { get; set; }
-    public string Password { get; set; }
+    public class RegisterRequest
+    {
+        public string Username { get; set; } = null!;
+        public string Password { get; set; } = null!;
+    }
 }

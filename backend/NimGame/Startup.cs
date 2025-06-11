@@ -16,7 +16,8 @@ namespace NimGame
         {
             // Adicione seu DbContext
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+            );
 
             // Adicione controllers (API)
             services.AddControllers();
@@ -42,4 +43,3 @@ namespace NimGame
         }
     }
 }
-
