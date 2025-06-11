@@ -8,9 +8,8 @@ namespace NimGame.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { }
 
-        public DbSet<User> Users { get; set; }
-
-        // Se quiser, deixe aqui outros DbSet, por exemplo:
-        // public DbSet<Game> Games { get; set; }
+        public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Game> Games { get; set; } = null!;
+        public DbSet<Move> Moves { get; set; } = null!;
     }
 }

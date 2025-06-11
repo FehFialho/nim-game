@@ -22,7 +22,20 @@ namespace NimGame
             // Adicione controllers (API)
             services.AddControllers();
 
-            // Adicione CORS, autenticação, etc. se quiser
+            // Configurar CORS para liberar acesso do frontend
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend",
+                    builder =>
+                    {
+                        builder
+                            .WithOrigins("http://localhost:3000") // Coloque o endereço do seu frontend aqui
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
+
+            // Adicione autenticação e autorização aqui, se for usar
         }
 
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
@@ -34,7 +47,12 @@ namespace NimGame
 
             app.UseRouting();
 
+            // Habilitar CORS com a política definida
+            app.UseCors("AllowFrontend");
+
             // Middleware de autenticação, autorização se usar
+            // app.UseAuthentication();
+            // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

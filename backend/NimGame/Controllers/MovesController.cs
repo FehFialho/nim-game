@@ -1,7 +1,7 @@
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using NimGame.Data;
 using NimGame.Models;
+using System.Threading.Tasks;
 
 namespace NimGame.Controllers
 {
@@ -16,19 +16,32 @@ namespace NimGame.Controllers
             _context = context;
         }
 
+        // POST: api/moves
         [HttpPost]
-        public IActionResult CreateMove([FromBody] Move move)
+        public async Task<IActionResult> CreateMove([FromBody] Move move)
         {
-            _context.Moves.Add(move);
-            _context.SaveChanges();
-            return Ok(move);
+            if (move == null)
+            {
+                return BadRequest("Move is null.");
+            }
+
+            // Aqui você pode adicionar validações, por exemplo, se o movimento é válido no jogo
+
+            await _context.Moves.AddAsync(move);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetMoveById), new { id = move.Id }, move);
         }
 
-        [HttpGet("game/{gameId}")]
-        public IActionResult GetMovesByGame(int gameId)
+        // GET: api/moves/5
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetMoveById(int id)
         {
-            var moves = _context.Moves.Where(m => m.GameId == gameId).ToList();
-            return Ok(moves);
+            var move = await _context.Moves.FindAsync(id);
+            if (move == null)
+                return NotFound();
+
+            return Ok(move);
         }
     }
 }
