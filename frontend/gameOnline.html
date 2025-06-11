@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Nim - Jogo Online</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script defer>
+        function procurarUsuarios() {
+            const termo = document.getElementById("buscar").value.trim();
+            const lista = document.getElementById("lista-usuarios");
+            lista.innerHTML = ""; // limpa resultados
+
+            // Simulação de busca — substitua por chamada ao servidor futuramente
+            const usuariosFicticios = ["Lucas", "Maria", "João", "Ana", "Carlos"];
+            const resultados = usuariosFicticios.filter(nome =>
+                nome.toLowerCase().includes(termo.toLowerCase())
+            );
+
+            if (resultados.length === 0) {
+                lista.innerHTML = "<p>Nenhum usuário encontrado.</p>";
+            } else {
+                resultados.forEach(nome => {
+                    const item = document.createElement("div");
+                    item.className = "usuario-item";
+                    item.innerHTML = `
+                        <p>${nome}</p>
+                        <button onclick="convidar('${nome}')">Convidar</button>
+                    `;
+                    lista.appendChild(item);
+                });
+            }
+        }
+
+        function convidar(nome) {
+            alert(`Convite enviado para ${nome}!`);
+        }
+    </script>
+</head>
+<body>
+    <div class="menu-container">
+        <h1>Jogo Online</h1>
+        <input type="text" id="buscar" placeholder="Procurar usuários...">
+        <button onclick="procurarUsuarios()">Buscar</button>
+
+        <div id="lista-usuarios" style="margin-top: 20px;"></div>
+
+        <button onclick="window.location.href='menu.html'">Voltar ao Menu</button>
+    </div>
+</body>
+</html>

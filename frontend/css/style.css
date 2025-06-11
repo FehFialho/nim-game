@@ -1,0 +1,199 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fundo da página geral */
+body {
+    background: url('../img/wallpaper.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #b6d6e2;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column;
+}
+
+/* Container principal */
+.container,
+.menu-container,
+.login-container,
+.game-container,
+#game-result {
+    max-width: 960px;
+    width: 100%;
+    background: rgba(93, 173, 226, 0.15);
+    border-radius: 15px;
+    padding: 50px 30px;
+    box-shadow: 0 0 20px rgba(93, 173, 226, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+}
+
+/* Botões com sombra e efeito hover */
+button {
+    background: linear-gradient(45deg, #7D3C98, #2874A6);
+    border: none;
+    color: #F0F3F4;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(93, 173, 226, 0.6);
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
+    user-select: none;
+    margin: 10px 0;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #A569BD, #5DADE2);
+    box-shadow: 0 10px 20px rgba(93, 173, 226, 0.8);
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 10px rgba(93, 173, 226, 0.5);
+}
+
+/* Botões focados (acessibilidade) */
+button:focus-visible {
+    outline: 3px solid #F0F3F4;
+    outline-offset: 3px;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 2px solid #7D3C98;
+    background: rgba(255, 255, 255, 0.1);
+    color: #F0F3F4;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    max-width: 320px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #5DADE2;
+    outline: none;
+}
+
+/* Links */
+a {
+    color: #A569BD;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #5DADE2;
+    text-decoration: underline;
+}
+
+/* Página do jogo - fundo com degradê radial */
+.game-page {
+    background: radial-gradient(circle at center, #7D3C98, #2874A6);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(93, 173, 226, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Container dos palitos */
+.stick-container,
+#columns {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Palitos neon animados */
+@keyframes neonCycle {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+.stick {
+    width: 40px;
+    height: 120px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ffffff;
+    animation: neonCycle 3s linear infinite;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    user-select: none;
+    background: linear-gradient(135deg, #00f0ff, #a800ff);
+}
+
+/* Efeito ao passar o mouse nos palitos */
+.stick:hover {
+    transform: scale(1.15);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.9);
+}
+
+/* Efeito palito selecionado */
+.stick.selected {
+    box-shadow: 0 0 25px 4px #F0F3F4;
+    transform: scale(1.2);
+    border: 2px solid #F0F3F4;
+}
+
+/* Mensagens de status */
+.status-message,
+h1,
+h2 {
+    margin: 20px 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #F0F3F4;
+    text-align: center;
+}
+
+/* Temporizador e resultado */
+#timer {
+    font-size: 2rem;
+    margin: 20px;
+    color: #F0F3F4;
+    text-shadow: 0 0 8px #00f0ff;
+}
+
+#game-result {
+    display: none;
+    margin-top: 20px;
+}
+
+#game-result.hidden {
+    display: none;
+}
+
+#game-result.show {
+    display: flex;
+}
