@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Nim - Jogo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="game.js" defer></script>
+</head>
+<body>
+    <div class="game-container">
+        <h2 id="status">Sua vez!</h2>
+        <div class="timer">Tempo restante: <span id="timer">30</span>s</div>
+        <div id="columns">
+            <!-- Palitos serão gerados via JS dinamicamente -->
+        </div>
+    </div>
+    <div id="game-result" class="hidden">
+        <h2 id="result-message"></h2>
+        <button onclick="window.location.href='menu.html'">Jogar Novamente</button>
+    </div>
+</body>
+</html>

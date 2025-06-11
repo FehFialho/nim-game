@@ -1,0 +1,165 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fundo da página geral */
+body {
+
+    background-image: hrf;
+    background: linear-gradient(135deg, #5B2C6F, #2874A6);
+    color: #F0F3F4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Container principal */
+.container {
+    max-width: 960px;
+    width: 100%;
+    background: rgba(93, 173, 226, 0.15);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(93, 173, 226, 0.5);
+}
+
+/* Botões com sombra e efeito hover */
+button {
+    background: linear-gradient(45deg, #7D3C98, #2874A6);
+    border: none;
+    color: #F0F3F4;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(93, 173, 226, 0.6);
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
+    user-select: none;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #A569BD, #5DADE2);
+    box-shadow: 0 10px 20px rgba(93, 173, 226, 0.8);
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 10px rgba(93, 173, 226, 0.5);
+}
+
+/* Botões focados (acessibilidade) */
+button:focus-visible {
+    outline: 3px solid #F0F3F4;
+    outline-offset: 3px;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 2px solid #7D3C98;
+    background: rgba(255, 255, 255, 0.1);
+    color: #F0F3F4;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    max-width: 320px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #5DADE2;
+    outline: none;
+}
+
+/* Links */
+a {
+    color: #A569BD;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #5DADE2;
+    text-decoration: underline;
+}
+
+/* Página do jogo - fundo com degradê radial */
+.game-page {
+    background: radial-gradient(circle at center, #7D3C98, #2874A6);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(93, 173, 226, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Container dos palitos */
+.stick-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* Palitos coloridos */
+.stick {
+    width: 40px;
+    height: 120px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    user-select: none;
+}
+
+/* Cores variadas para os palitos (vibrantes dentro da paleta) */
+.stick.color1 {
+    background: linear-gradient(135deg, #A569BD, #7D3C98);
+}
+
+.stick.color2 {
+    background: linear-gradient(135deg, #5DADE2, #2874A6);
+}
+
+.stick.color3 {
+    background: linear-gradient(135deg, #9B59B6, #6C3483);
+}
+
+.stick.color4 {
+    background: linear-gradient(135deg, #3498DB, #2E86C1);
+}
+
+/* Efeito ao passar o mouse nos palitos */
+.stick:hover {
+    transform: scale(1.15);
+    box-shadow: 0 8px 20px rgba(93, 173, 226, 0.8);
+}
+
+/* Efeito palito selecionado */
+.stick.selected {
+    box-shadow: 0 0 25px 4px #F0F3F4;
+    transform: scale(1.2);
+    border: 2px solid #F0F3F4;
+}
+
+/* Mensagens de status */
+.status-message {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #F0F3F4;
+    text-align: center;
+}
