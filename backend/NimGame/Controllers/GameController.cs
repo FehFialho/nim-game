@@ -18,7 +18,13 @@ namespace NimGame.Controllers
         [HttpPost("start")]
         public IActionResult StartGame([FromBody] StartGameRequest request)
         {
+            if (string.IsNullOrWhiteSpace(request.Player1))
+                return BadRequest(new { message = "Jogador 1 é obrigatório." });
+
             var game = _gameService.CreateNewGame(request.Player1, request.Player2);
+            if (game == null)
+                return BadRequest(new { message = "Não foi possível criar o jogo." });
+
             return Ok(game);
         }
     }

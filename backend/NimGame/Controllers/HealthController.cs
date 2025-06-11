@@ -6,7 +6,7 @@ namespace NimGame.Controllers
     [Route("api/[controller]")]
     public class HealthController : ControllerBase
     {
-        [HttpGet("ping")]
+        [HttpGet]
         public IActionResult Ping()
         {
             return Ok("pong");
